@@ -6,7 +6,7 @@ Designed to be a simpler way for self documenting assemblies that use xml commen
 ## Usage ##
 Download, compile, run FastDoc.exe
 
-        EasyDoc.exe Assembly.dll [Assembly.xml]
+        FastDoc.exe Assembly.dll [Assembly.xml]
         xml optional (if ommitted will simply replace ".dll" with ".xml")
 
 Seth Juarez ([@sethjuarez](https://twitter.com/sethjuarez "@sethjuarez")) for questions.
