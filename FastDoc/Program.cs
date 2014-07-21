@@ -16,22 +16,29 @@ namespace FastDoc
             if (args.Length == 0)
             {
                 Write(ConsoleColor.DarkGray, "Usage:\n\t");
-                Write(ConsoleColor.Green, "EasyDoc.exe ");
+                Write(ConsoleColor.Green, "FastDoc.exe ");
                 Write(ConsoleColor.White, "Assembly.dll ");
                 Write(ConsoleColor.Gray, "[Assembly.xml]\n");
                 Write(ConsoleColor.Yellow, "\txml optional (if ommitted will simply replace \".dll\" with \".xml\")\n");
             }
             else if (args.Length == 1)
+                Load(args[0], args[0].Replace(".dll", ".xml"));
+            else
+                Load(args[0], args[1]);
+        }
+
+        static void Load(string asmbly, string xml)
+        {
+            try
             {
-                var assembly = Assembly.LoadFrom(args[0]);
-                var root = Node.Generate(assembly, args[0].Replace(".dll", ".xml"));
+                var assembly = Assembly.LoadFrom(asmbly);
+                var root = Node.Generate(assembly, xml);
                 Print(root);
             }
-            else if (args.Length == 2)
+            catch (Exception error)
             {
-                var assembly = Assembly.LoadFrom(args[0]);
-                var root = Node.Generate(assembly, args[1]);
-                Print(root);
+                Write(ConsoleColor.Red, error.Message + "\n");
+                Write(ConsoleColor.Red, error.StackTrace + "\n");
             }
         }
 
