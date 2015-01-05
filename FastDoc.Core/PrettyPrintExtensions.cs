@@ -76,6 +76,15 @@ namespace FastDoc.Core
             return sigBuilder.ToString();
         }
 
+        public static string Signature(this EventInfo method)
+        {
+            var sigBuilder = new StringBuilder();
+            sigBuilder.Append(TypeName(method.EventHandlerType));
+            sigBuilder.Append(" ");
+            sigBuilder.Append(method.Name);            
+            return sigBuilder.ToString();
+        }
+
         /// <summary>
         /// Return the method signature as a string.
         /// </summary>
@@ -156,12 +165,12 @@ namespace FastDoc.Core
             if (!type.IsGenericType)
             {
                 return type.Name
-                    .Replace("String", "string")
-                    .Replace("Int32", "int")
-                    .Replace("Decimal", "decimal")
-                    .Replace("Object", "object")
-                    .Replace("Void", "void")
-                    .Replace("Double", "double");
+                    .Replace("String ", "string ")
+                    .Replace("Int32 ", "int ")
+                    .Replace("Decimal ", "decimal ")
+                    .Replace("Object ", "object ")
+                    .Replace("Void ", "void ")
+                    .Replace("Double ", "double ");
             }
 
             var sb = new StringBuilder(type.Name.Substring(0, type.Name.IndexOf('`')));

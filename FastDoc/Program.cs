@@ -9,10 +9,13 @@ namespace FastDoc
 {
     class Program
     {
-
         static readonly Regex trimmer = new Regex(@"\n\s+");
         static void Main(string[] args)
         {
+#if DEBUG
+            var root = Load("numl.dll", "numl.xml");
+            Console.ReadKey();
+#else
             if (args.Length == 0)
             {
                 Write(ConsoleColor.DarkGray, "Usage:\n\t");
@@ -25,14 +28,16 @@ namespace FastDoc
                 Load(args[0], args[0].Replace(".dll", ".xml"));
             else
                 Load(args[0], args[1]);
+#endif
         }
 
-        static void Load(string asmbly, string xml)
+        static Node Load(string asmbly, string xml)
         {
+            Node root = new Node() { Name = "Empty", NodeType = NodeType.Unknown };
             try
             {
                 var assembly = Assembly.LoadFrom(asmbly);
-                var root = Node.Generate(assembly, xml);
+                root = Node.Generate(assembly, xml);
                 Print(root);
             }
             catch (Exception error)
@@ -40,10 +45,15 @@ namespace FastDoc
                 Write(ConsoleColor.Red, error.Message + "\n");
                 Write(ConsoleColor.Red, error.StackTrace + "\n");
             }
+
+            return root;
+
         }
 
-        static void Print(Node n, string pre = "")
+        static void Print(Node n, string pre = "", int depth = int.MaxValue)
         {
+            if (depth == 0) return;
+            //if (n.NodeType != NodeType.Namespace) return;
             Write(ConsoleColor.DarkGray, pre + " |-");
             var output = String.Format("{0} ({1})\n", n.Name, n.NodeType);
             Write(GetColor(n.NodeType), output);
@@ -53,7 +63,7 @@ namespace FastDoc
             else
                 Write(ConsoleColor.White, String.Format("  {0}\n", trimmer.Replace(n.Documentation, " ")));
             foreach (var node in n.Children.OrderBy(t => t.NodeType))
-                Print(node, String.Format("{0} |\t", pre));
+                Print(node, String.Format("{0} |\t", pre), depth - 1);
         }
 
         static void Write(ConsoleColor color, string item)

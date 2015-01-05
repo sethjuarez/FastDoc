@@ -1,4 +1,7 @@
-﻿using System;
+﻿// file:	Node.cs
+//
+// summary:	Implements the node class
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
@@ -6,25 +9,37 @@ using System.Collections.Generic;
 namespace FastDoc.Core
 {
 
+    /// <summary>Values that represent NodeType.</summary>
     public enum NodeType
     {
+        /// <summary>Event queue for all listeners interested in Namespace events.</summary>
         Namespace,
+        /// <summary>Event queue for all listeners interested in Enum events.</summary>
         Enum,
+        /// <summary>Event queue for all listeners interested in Class events.</summary>
         Class,
+        /// <summary>Event queue for all listeners interested in Constructor events.</summary>
         Constructor,
+        /// <summary>Event queue for all listeners interested in Property events.</summary>
         Property,
+        /// <summary>Event queue for all listeners interested in Method events.</summary>
         Method,
+        /// <summary>Event queue for all listeners interested in Interface events.</summary>
         Interface,
+        /// <summary>Event queue for all listeners interested in Field events.</summary>
         Field,
+        /// <summary>Event queue for all listeners interested in Parameter events.</summary>
         Parameter,
-        Unknown
+        /// <summary>Event queue for all listeners interested in Unknown events.</summary>
+        Unknown,
+        /// <summary>Event queue for all listeners interested in Event events.</summary>
+        Event
     }
 
+    /// <summary>A node.</summary>
     public class Node
     {
-        /// <summary>
-        /// Initializes a new instance of the Node class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the Node class.</summary>
         public Node()
         {
             Name = "";
@@ -33,11 +48,20 @@ namespace FastDoc.Core
             NodeType = Core.NodeType.Unknown;
             _children = new Node[] { };
         }
-
+        /// <summary>Gets or sets the name.</summary>
+        /// <value>The name.</value>
         public string Name { get; set; }
+        /// <summary>Gets or sets the name of the full.</summary>
+        /// <value>The name of the full.</value>
         public string FullName { get; set; }
+        /// <summary>Gets or sets the documentation.</summary>
+        /// <value>The documentation.</value>
         public string Documentation { get; set; }
+        /// <summary>Gets or sets the type of the node.</summary>
+        /// <value>The type of the node.</value>
         public NodeType NodeType { get; set; }
+        /// <summary>Gets or sets the type.</summary>
+        /// <value>The type.</value>
         public Type Type
         {
             get
@@ -51,9 +75,14 @@ namespace FastDoc.Core
             }
         }
 
+        /// <summary>The type.</summary>
         private Type _type;
+        /// <summary>The children.</summary>
         private Node[] _children;
+        /// <summary>The XML.</summary>
         private static string _xml;
+        /// <summary>Gets the children.</summary>
+        /// <value>The children.</value>
         public Node[] Children
         {
             get
@@ -61,7 +90,9 @@ namespace FastDoc.Core
                 return _children;
             }
         }
-
+        /// <summary>Pushes an object onto this stack.</summary>
+        /// <param name="name">The name to push.</param>
+        /// <returns>A Node.</returns>
         public Node Push(string name)
         {
             var q = Children.Where(c => c.Name == name);
@@ -74,13 +105,15 @@ namespace FastDoc.Core
                 return node;
             }
         }
-
+        /// <summary>Pushes an object onto this stack.</summary>
+        /// <param name="node">The node to push.</param>
         public void Push(Node node)
         {
             Array.Resize(ref _children, Children.Length + 1);
             _children[_children.Length - 1] = node;
         }
 
+        /// <summary>Sets node type.</summary>
         private void SetNodeType()
         {
             if (Type == null) NodeType = NodeType.Unknown;
@@ -88,7 +121,8 @@ namespace FastDoc.Core
             else if (Type.IsInterface) NodeType = NodeType.Interface;
             else if (Type.IsEnum) NodeType = NodeType.Enum;
         }
-
+        /// <summary>Generates the members.</summary>
+        /// <exception cref="InvalidProgramException">Thrown when an Invalid Program error condition occurs.</exception>
         public void GenerateMembers()
         {
             if (NodeType == NodeType.Class || NodeType == NodeType.Interface)
@@ -113,8 +147,9 @@ namespace FastDoc.Core
                     Push(new Node { Name = item, NodeType = Core.NodeType.Property });
             }
         }
-
-
+        /// <summary>Creates member node.</summary>
+        /// <param name="member">The member.</param>
+        /// <returns>The new member node.</returns>
         private static Node CreateMemberNode(MemberInfo member)
         {
             Node n = null;
@@ -126,13 +161,17 @@ namespace FastDoc.Core
                 n = new Node { Name = (member as ConstructorInfo).Signature(), NodeType = NodeType.Constructor };
             else if (member is FieldInfo)
                 n = new Node { Name = (member as FieldInfo).Signature(), NodeType = NodeType.Field };
+            else if (member is EventInfo)
+                n = new Node { Name = (member as EventInfo).Signature(), NodeType = NodeType.Event };
 
             n.FullName = member.ToString();
             n.Documentation = member.GetXmlDocumentation(_xml);
-
             return n;
         }
-
+        /// <summary>Generates a member parameters.</summary>
+        /// <param name="member">The member.</param>
+        /// <param name="parent">The parent.</param>
+        /// <returns>The member parameters.</returns>
         private static Node GenerateMemberParameters(MemberInfo member, Node parent)
         {
             if (member is MethodBase)
@@ -154,12 +193,16 @@ namespace FastDoc.Core
 
             return parent;
         }
-
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             return string.Format("{0} ({1})", Name, NodeType);
         }
-
+        /// <summary>Generates.</summary>
+        /// <param name="assembly">The assembly.</param>
+        /// <param name="xml">The XML.</param>
+        /// <returns>A Node.</returns>
         public static Node Generate(Assembly assembly, string xml)
         {
             _xml = xml;
@@ -180,11 +223,11 @@ namespace FastDoc.Core
                     for (int i = 1; i < name.Length; i++)
                     {
                         n = n.Push(name[i]);
-                        if (n.Name == t.Name)
+                        if (n.Name == t.Name || n.Name.Contains("<"))
                         {
                             n.Type = t;
                             n.FullName = String.Join(".", name, 0, name.Length);
-                            if(full)
+                            if (full)
                                 n.GenerateMembers();
                         }
                         else

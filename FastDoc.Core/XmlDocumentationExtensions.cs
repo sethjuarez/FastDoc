@@ -17,16 +17,17 @@ namespace FastDoc.Core
     internal static class XmlDocumentationExtensions
     {
 
+        /// <summary>The cached XML.</summary>
         private static Dictionary<string, XDocument> cachedXml;
 
-        /// <summary>
-        /// Static constructor.
-        /// </summary>
+        /// <summary>Static constructor.</summary>
         static XmlDocumentationExtensions()
         {
             cachedXml = new Dictionary<string, XDocument>(StringComparer.OrdinalIgnoreCase);
         }
-
+        /// <summary>Convert parameter.</summary>
+        /// <param name="p">The ParameterInfo to process.</param>
+        /// <returns>The parameter converted.</returns>
         private static string ConvertParameter(ParameterInfo p)
         {
             if (p.ParameterType.FullName == null) return "";
@@ -42,7 +43,9 @@ namespace FastDoc.Core
             }
             else return p.ParameterType.FullName ?? "";
         }
-
+        /// <summary>Gets parameter list.</summary>
+        /// <param name="method">The method.</param>
+        /// <returns>The parameter list.</returns>
         private static string GetParameterList(MethodBase method)
         {
             string paramTypesList = String.Join(
@@ -57,6 +60,8 @@ namespace FastDoc.Core
         /// <summary>
         /// Returns the expected name for a member element in the XML documentation file.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when one or more arguments have unsupported or
+        /// illegal values.</exception>
         /// <param name="member">The reflected member.</param>
         /// <returns>The name of the member element.</returns>
         private static string GetMemberElementName(this MemberInfo member)
@@ -108,10 +113,7 @@ namespace FastDoc.Core
             // elements are of the form "M:Namespace.Class.Method"
             return String.Format("{0}:{1}", prefixCode, memberName);
         }
-
-        /// <summary>
-        /// Returns the XML documentation (summary tag) for the specified member.
-        /// </summary>
+        /// <summary>Returns the XML documentation (summary tag) for the specified member.</summary>
         /// <param name="member">The reflected member.</param>
         /// <returns>The contents of the summary tag for the member.</returns>
         public static string GetXmlDocumentation(this MemberInfo member)
@@ -119,10 +121,7 @@ namespace FastDoc.Core
             AssemblyName assemblyName = member.Module.Assembly.GetName();
             return GetXmlDocumentation(member, assemblyName.Name + ".xml");
         }
-
-        /// <summary>
-        /// Returns the XML documentation (summary tag) for the specified member.
-        /// </summary>
+        /// <summary>Returns the XML documentation (summary tag) for the specified member.</summary>
         /// <param name="member">The reflected member.</param>
         /// <param name="pathToXmlFile">Path to the XML documentation file.</param>
         /// <returns>The contents of the summary tag for the member.</returns>
@@ -138,10 +137,7 @@ namespace FastDoc.Core
 
             return GetXmlDocumentation(member, xml);
         }
-
-        /// <summary>
-        /// Returns the XML documentation (summary tag) for the specified member.
-        /// </summary>
+        /// <summary>Returns the XML documentation (summary tag) for the specified member.</summary>
         /// <param name="member">The reflected member.</param>
         /// <param name="xml">XML documentation.</param>
         /// <returns>The contents of the summary tag for the member.</returns>
@@ -155,7 +151,6 @@ namespace FastDoc.Core
                 )
             ).ToString().Trim();
         }
-
         /// <summary>
         /// Returns the XML documentation (returns/param tag) for the specified parameter.
         /// </summary>
@@ -166,7 +161,6 @@ namespace FastDoc.Core
             AssemblyName assemblyName = parameter.Member.Module.Assembly.GetName();
             return GetXmlDocumentation(parameter, assemblyName.Name + ".xml");
         }
-
         /// <summary>
         /// Returns the XML documentation (returns/param tag) for the specified parameter.
         /// </summary>
@@ -185,7 +179,6 @@ namespace FastDoc.Core
 
             return GetXmlDocumentation(parameter, xml);
         }
-
         /// <summary>
         /// Returns the XML documentation (returns/param tag) for the specified parameter.
         /// </summary>
