@@ -5,66 +5,28 @@ using System.Collections.Generic;
 
 namespace FastDoc.Core
 {
-
-    public enum NodeType
-    {
-        Namespace,
-        Enum,
-        Class,
-        Constructor,
-        Property,
-        Method,
-        Interface,
-        Field,
-        Parameter,
-        Unknown,
-        Event
-    }
-
+    [Serializable]
     public class Node
     {
-        /// <summary>
-        /// Initializes a new instance of the Node class.
-        /// </summary>
-        public Node()
-        {
-            Name = "";
-            FullName = "";
-            Documentation = "";
-            NodeType = Core.NodeType.Unknown;
-            _children = new Node[] { };
-        }
-
         public string Name { get; set; }
         public string FullName { get; set; }
-        public string Documentation { get; set; }
-        public NodeType NodeType { get; set; }
-        public Type Type
+        public List<Node> Children { get; set; }
+        public Node Push(Node n)
         {
-            get
-            {
-                return _type;
-            }
-            set
-            {
-                _type = value;
-                SetNodeType();
-            }
-        }
+            if (Children == null)
+                Children = new List<Node>();
 
-        private Type _type;
-        private Node[] _children;
-        private static string _xml;
-        public Node[] Children
-        {
-            get
-            {
-                return _children;
-            }
+            if (!Children.Contains(n))
+                Children.Add(n);
+
+            return n;
         }
 
         public Node Push(string name)
         {
+            if (Children == null)
+                Children = new List<Node>();
+
             var q = Children.Where(c => c.Name == name);
             if (q.Count() == 1)
                 return q.First();
@@ -76,129 +38,92 @@ namespace FastDoc.Core
             }
         }
 
-        public void Push(Node node)
+        public static Node Generate(Assembly assembly)
         {
-            Array.Resize(ref _children, Children.Length + 1);
-            _children[_children.Length - 1] = node;
-        }
-
-        private void SetNodeType()
-        {
-            if (Type == null) NodeType = NodeType.Unknown;
-            else if (Type.IsClass) NodeType = NodeType.Class;
-            else if (Type.IsInterface) NodeType = NodeType.Interface;
-            else if (Type.IsEnum) NodeType = NodeType.Enum;
-        }
-
-        public void GenerateMembers()
-        {
-            if (NodeType == NodeType.Class || NodeType == NodeType.Interface)
-            {
-                foreach (var member in Type.GetMembers())
-                {
-                    if (member.Name.Contains("get_") || member.Name.Contains("set_") || member.DeclaringType != Type) continue;
-
-                    Node n = CreateMemberNode(member);
-
-                    if (n == null)
-                        throw new InvalidProgramException("Uh oh, not sure what we are working with here....");
-
-                    Push(n);
-                    GenerateMemberParameters(member, n);
-
-                }
-            }
-            else if (NodeType == NodeType.Enum)
-            {
-                foreach (var item in Type.GetEnumNames())
-                    Push(new Node { Name = item, NodeType = Core.NodeType.Property });
-            }
-        }
-
-
-        private static Node CreateMemberNode(MemberInfo member)
-        {
-            Node n = null;
-            if (member is MethodInfo)
-                n = new Node { Name = (member as MethodInfo).Signature(), NodeType = NodeType.Method };
-            else if (member is PropertyInfo)
-                n = new Node { Name = (member as PropertyInfo).Signature(), NodeType = NodeType.Property };
-            else if (member is ConstructorInfo)
-                n = new Node { Name = (member as ConstructorInfo).Signature(), NodeType = NodeType.Constructor };
-            else if (member is FieldInfo)
-                n = new Node { Name = (member as FieldInfo).Signature(), NodeType = NodeType.Field };
-            else if (member is EventInfo)
-                n = new Node { Name = (member as EventInfo).Signature(), NodeType = NodeType.Event };
-
-            n.FullName = member.ToString();
-            n.Documentation = member.GetXmlDocumentation(_xml);
-            return n;
-        }
-
-        private static Node GenerateMemberParameters(MemberInfo member, Node parent)
-        {
-            if (member is MethodBase)
-            {
-                MethodBase method = (MethodBase)member;
-                foreach (ParameterInfo parameter in method.GetParameters())
-                {
-                    var p = new Node()
-                    {
-                        Name = String.Format("{0} {1}", PrettyPrintExtensions.TypeName(parameter.ParameterType), parameter.Name),
-                        Documentation = parameter.GetXmlDocumentation(_xml),
-                        NodeType = NodeType.Parameter,
-                        FullName = parameter.Name
-                    };
-
-                    parent.Push(p);
-                }
-            }
-
-            return parent;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("{0} ({1})", Name, NodeType);
-        }
-
-        public static Node Generate(Assembly assembly, string xml)
-        {
-            _xml = xml;
-            bool full = !string.IsNullOrWhiteSpace(_xml);
-
             Node root = null;
-            foreach (var t in assembly.GetTypes())
+            foreach (var t in assembly.ExportedTypes)
             {
-                string[] name = t.ToString().Split('.');
-
+                string[] name = t.Namespace.Split('.');
                 if (root == null)
-                    root = new Node { Name = name[0], FullName = name[0], NodeType = NodeType.Namespace };
+                    root = new Node { Name = name[0], FullName = name[0] };
 
-                if (!name[name.Length - 1].Contains("__"))
+                var n = root;
+                for (int i = 1; i < name.Length; i++)
                 {
-                    name[name.Length - 1] = PrettyPrintExtensions.TypeName(t);
-                    var n = root;
-                    for (int i = 1; i < name.Length; i++)
-                    {
-                        n = n.Push(name[i]);
-                        if (n.Name == t.Name || n.Name.Contains("<"))
-                        {
-                            n.Type = t;
-                            n.FullName = String.Join(".", name, 0, name.Length);
-                            if (full)
-                                n.GenerateMembers();
-                        }
-                        else
-                        {
-                            n.NodeType = NodeType.Namespace;
-                            n.FullName = String.Join(".", name, 0, i + 1);
-                        }
-                    }
+                    n = n.Push(name[i]);
+                    if (n.Name != t.Name)
+                        n.FullName = String.Join(".", name, 0, i + 1);
                 }
             }
+
+
+            return Generate(assembly, root);
+        }
+
+        public static Node Generate(Assembly assembly, Node root)
+        {
+            if (root.Children != null)
+                foreach (var node in root.Children)
+                    Generate(assembly, node);
+
+            foreach (var item in ItemNode.GetItems(assembly, root.FullName))
+                root.Push(item);
 
             return root;
         }
     }
+
+    [Serializable]
+    public class ItemNode : Node
+    {
+        public ItemType ItemType { get; set; }
+        public Type Type { get; set; }
+
+        public static IEnumerable<ItemNode> GetItems(Assembly asmbly, string nmspc)
+        {
+            var q = from t in asmbly.ExportedTypes
+                    where t.Namespace == nmspc
+                    select t;
+
+
+            foreach (var type in q)
+            {
+                var item = new ItemNode
+                {
+                    Name = type.GetName(),
+                    FullName = type.GetName(full: true),
+                    Type = type,
+                    ItemType = type.GetStructureType()
+                };
+
+                foreach (var m in MemberNode.GetMembers(type))
+                    item.Push(m);
+
+                yield return item;
+            }
+        }
+    }
+
+    [Serializable]
+    public class MemberNode : Node
+    {
+        public MemberType MemberType { get; set; }
+        public MemberInfo MemberInfo { get; set; }
+
+        public static IEnumerable<MemberNode> GetMembers(Type t)
+        {
+            foreach (var member in t.GetMembers())
+            {
+                if (!member.Name.Contains("get_") && !member.Name.Contains("set_"))
+                    yield return new MemberNode
+                    {
+                        Name = member.GetName(),
+                        FullName = member.GetName(full: true),
+                        MemberType = member.GetMemberType(),
+                        MemberInfo = member
+                    };
+            }
+        }
+    }
+
 }
