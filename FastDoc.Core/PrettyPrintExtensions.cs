@@ -16,28 +16,17 @@ namespace FastDoc.Core
 
             if (!type.IsGenericType)
             {
-                //if (type == typeof(string))
-                //    return "string";
-                //else if (type == typeof(int))
-                //    return "int";
-                //else if (type == typeof(decimal))
-                //    return "decimal";
-                //else if (type == typeof(object))
-                //    return "object";
-                //else if (type == typeof(void))
-                //    return "void";
-                //else if (type == typeof(double))
-                //    return "double";
-                //else return type.Name;
-
                 if (type.IsPrimitive)
                     return type.Name
                         .Replace("Int32", "int")
                         .Replace("Decimal", "decimal")
                         .Replace("Object", "object")
-                        .Replace("Void", "void")
                         .Replace("Double", "double")
                         .Replace("Boolean", "bool");
+                else if (type == typeof(void))
+                    return "void";
+                else if (type == typeof(object))
+                    return "object";
                 else if (type == typeof(string))
                     return "string";
                 else
@@ -203,79 +192,6 @@ namespace FastDoc.Core
                 return name;
 
         }
-
-        /// <summary>
-        /// Return the method signature as a string.
-        /// </summary>
-        /// <param name="method">The Method</param>
-        /// <param name="callable">Return as an callable string(public void a(string b) would return a(b))</param>
-        /// <returns>Method signature</returns>
-        public static string Signature(this ConstructorInfo method)
-        {
-            var firstParam = true;
-            var sigBuilder = new StringBuilder();
-
-            sigBuilder.Append(method.Name);
-
-            // Add method generics
-            if (method.IsGenericMethod)
-            {
-                sigBuilder.Append("<");
-                foreach (var g in method.GetGenericArguments())
-                {
-                    if (firstParam)
-                        firstParam = false;
-                    else
-                        sigBuilder.Append(", ");
-                    sigBuilder.Append(GetName(g));
-                }
-                sigBuilder.Append(">");
-            }
-            sigBuilder.Append("(");
-            firstParam = true;
-            var secondParam = false;
-            foreach (var param in method.GetParameters())
-            {
-                if (firstParam)
-                {
-                    firstParam = false;
-                    if (method.IsDefined(typeof(System.Runtime.CompilerServices.ExtensionAttribute), false))
-                    {
-                        sigBuilder.Append("this ");
-                    }
-                }
-                else if (secondParam)
-                    secondParam = false;
-                else
-                    sigBuilder.Append(", ");
-                if (param.ParameterType.IsByRef)
-                    sigBuilder.Append("ref ");
-                else if (param.IsOut)
-                    sigBuilder.Append("out ");
-
-                if (param.IsOptional)
-                {
-                    sigBuilder.Append("[");
-                    sigBuilder.Append(GetName(param.ParameterType));
-                    sigBuilder.Append(' ');
-                    sigBuilder.Append(param.Name);
-                    sigBuilder.Append("]");
-                }
-                else
-                {
-                    sigBuilder.Append(GetName(param.ParameterType));
-                    sigBuilder.Append(' ');
-                    sigBuilder.Append(param.Name);
-                }
-            }
-            sigBuilder.Append(")");
-            return sigBuilder.ToString();
-        }
-
-
-
-
-
     }
 
 }

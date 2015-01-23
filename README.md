@@ -18,7 +18,7 @@ The design is separated into structural and information nodes.
 
 ## Structural (namespace as root)
 1. class
-	-  Constants
+	- Constants
 	- Fields
 	- Methods
 	- Properties
