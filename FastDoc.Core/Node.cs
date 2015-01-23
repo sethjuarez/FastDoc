@@ -71,6 +71,11 @@ namespace FastDoc.Core
 
             return root;
         }
+
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 
 }
