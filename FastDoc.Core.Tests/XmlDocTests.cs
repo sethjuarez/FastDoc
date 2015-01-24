@@ -11,20 +11,24 @@ namespace FastDoc.Core.Tests
     [TestFixture]
     public class XmlDocTests
     {
+        private Assembly _assembly;
+        public Assembly Assembly
+        {
+            get
+            {
+                if (_assembly == null)
+                    _assembly = Assembly.LoadFrom("SampleLib.dll");
+                return _assembly;
+            }
+
+        }
+
 
         [Test]
         public void RetrieveAssembly()
         {
-
-            var assembly = Assembly.LoadFrom("FastDoc.Core.Tests.dll");
-            var root = Node.Generate(assembly);
+            var root = Node.Generate(Assembly);
         }
 
-        [Test]
-        public void RetrieveMethod()
-        {
-            XmlDoc doc = new XmlDoc("test.xml");
-
-        }
     }
 }

@@ -12,7 +12,7 @@ namespace FastDoc
     {
         static void Main(string[] args)
         {
-            var root = Load("numl.dll");
+            var root = Load("SampleLib.dll");
             NodeVisualizer.TestShowVisualizer(root);
         }
 

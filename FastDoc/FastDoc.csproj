@@ -57,14 +57,10 @@
       <Project>{820318c2-d10c-486f-936e-062ab99ccd7b}</Project>
       <Name>FastDoc.Visualizer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="numl.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="numl.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <ProjectReference Include="..\SampleLib\SampleLib.csproj">
+      <Project>{2c8d456f-e881-49c8-a39b-420cce7ed47e}</Project>
+      <Name>SampleLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

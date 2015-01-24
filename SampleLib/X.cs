@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-///
-///
-namespace N  // "N:N"
+namespace SampleLib
 {
     ///
     ///
@@ -94,4 +92,3 @@ namespace N  // "N:N"
         // "M:N.X.op_Explicit(N.X)~System.Int32"
     }
 }
-
