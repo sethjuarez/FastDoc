@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sub1\Class1.cs" />
-    <Compile Include="Sub2\Class1.cs" />
+    <Compile Include="Sub1\One.cs" />
+    <Compile Include="Sub1\Two.cs" />
+    <Compile Include="Sub2\Alpha.cs" />
+    <Compile Include="Sub2\Beta.cs" />
     <Compile Include="X.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Y.cs" />

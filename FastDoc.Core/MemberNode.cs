@@ -8,7 +8,7 @@ namespace FastDoc.Core
     [Serializable]
     public class MemberNode : Node
     {
-        public MemberType MemberType { get; set; }
+        public MemberTypes MemberType { get; set; }
         public MemberInfo MemberInfo { get; set; }
 
         public static IEnumerable<MemberNode> GetMembers(Type t)
@@ -20,10 +20,15 @@ namespace FastDoc.Core
                     {
                         Name = member.GetName(),
                         FullName = member.GetName(full: true),
-                        MemberType = member.GetMemberType(),
+                        MemberType = member.MemberType,
                         MemberInfo = member
                     };
             }
+        }
+
+        public override string ToString()
+        {
+            return MemberInfo.GetMemberElementName();
         }
     }
 }

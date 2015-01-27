@@ -40,34 +40,36 @@ namespace FastDoc.Core
 
         public static Node Generate(Assembly assembly)
         {
-            Node root = null;
-            foreach (var t in assembly.ExportedTypes)
+            Node root = new Node() 
+            { 
+                Name = assembly.GetName().Name, 
+                FullName = assembly.GetName().Name, 
+                Children = new List<Node>() 
+            };
+
+            Dictionary<string, Node> nodes = new Dictionary<string, Node>();
+            nodes[root.Name] = root;
+            foreach (var type in assembly.ExportedTypes)
             {
-                string[] name = t.Namespace.Split('.');
-                if (root == null)
-                    root = new Node { Name = name[0], FullName = name[0] };
-
-                var n = root;
-                for (int i = 1; i < name.Length; i++)
+                if (!nodes.ContainsKey(type.Namespace))
                 {
-                    n = n.Push(name[i]);
-                    if (n.Name != t.Name)
-                        n.FullName = String.Join(".", name, 0, i + 1);
+                    nodes[type.Namespace] = new Node { Name = type.Namespace, FullName = type.Namespace, Children = new List<Node>() };
+                    root.Push(nodes[type.Namespace]);
                 }
+
+                var item = new ItemNode
+                {
+                    Name = type.GetName(),
+                    FullName = type.GetName(full: true),
+                    Type = type,
+                    ItemType = type.GetStructureType()
+                };
+
+                foreach (var m in MemberNode.GetMembers(type))
+                    item.Push(m);
+
+                nodes[type.Namespace].Push(item);
             }
-
-
-            return Generate(assembly, root);
-        }
-
-        public static Node Generate(Assembly assembly, Node root)
-        {
-            if (root.Children != null)
-                foreach (var node in root.Children)
-                    Generate(assembly, node);
-
-            foreach (var item in ItemNode.GetItems(assembly, root.FullName))
-                root.Push(item);
 
             return root;
         }

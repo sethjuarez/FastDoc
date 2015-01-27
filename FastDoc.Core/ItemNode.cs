@@ -34,5 +34,10 @@ namespace FastDoc.Core
                 yield return item;
             }
         }
+
+        public override string ToString()
+        {
+            return Type.FullName;
+        }
     }
 }

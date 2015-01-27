@@ -18,15 +18,5 @@ namespace FastDoc.Core
         {
             File = file;
         }
-
-        public string GetDocumentation(ItemType type, string path)
-        {
-            return "";
-        }
-
-        public string GetDocumentation(MemberType type, string path)
-        {
-            return "";
-        }
     }
 }

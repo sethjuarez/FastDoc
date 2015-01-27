@@ -42,7 +42,6 @@
     <Compile Include="InformationType.cs" />
     <Compile Include="ItemNode.cs" />
     <Compile Include="MemberNode.cs" />
-    <Compile Include="MemberType.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="PrettyPrintExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

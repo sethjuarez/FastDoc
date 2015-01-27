@@ -10,9 +10,4 @@ namespace SampleLib.Sub1
     public class One
     {
     }
-
-    /// <summary>A two.</summary>
-    public class Two
-    {
-    }
 }

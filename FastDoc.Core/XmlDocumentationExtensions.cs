@@ -64,12 +64,12 @@ namespace FastDoc.Core
         /// illegal values.</exception>
         /// <param name="member">The reflected member.</param>
         /// <returns>The name of the member element.</returns>
-        private static string GetMemberElementName(this MemberInfo member)
+        public static string GetMemberElementName(this MemberInfo member)
         {
             char prefixCode;
             string memberName = (member is Type)
                 ? ((Type)member).FullName                               // member is a Type
-                : (member.DeclaringType.FullName + "." + member.Name);  // member belongs to a Type
+                : (string.Format("{0}.{1}", member.DeclaringType.FullName, member.Name));  // member belongs to a Type
 
             switch (member.MemberType)
             {
@@ -83,7 +83,7 @@ namespace FastDoc.Core
                     // parameters are listed according to their type, not their name
                     var method = (MethodBase)member;
                     string paramTypesList = GetParameterList(method);
-                    if (!String.IsNullOrEmpty(paramTypesList)) memberName += "(" + paramTypesList + ")";
+                    if (!String.IsNullOrEmpty(paramTypesList)) memberName += string.Format("({0})", paramTypesList);
                     break;
 
                 case MemberTypes.Event:

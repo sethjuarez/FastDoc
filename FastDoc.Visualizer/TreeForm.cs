@@ -20,19 +20,19 @@ namespace FastDoc.Visualizer
 
         public void LoadNode(Node n, TreeNode parent = null)
         {
-            var text = string.Format("{0} ({1})", n.Name, n.FullName);
+            var text = string.Format("{0}", n);
 
-            if(n is ItemNode)
-            {
-                ItemNode item = (ItemNode)n;
-                text += string.Format(" [{0}, {1}]", item.ItemType, item.Type.FullName);
-            }
+            //if(n is ItemNode)
+            //{
+            //    ItemNode item = (ItemNode)n;
+            //    text += string.Format(" [{0}, {1}]", item.ItemType, item.Type.FullName);
+            //}
 
-            if(n is MemberNode)
-            {
-                MemberNode member = (MemberNode)n;
-                text += string.Format(" [{0}, {1}]", member.MemberType, member.MemberInfo.Name);
-            }
+            //if(n is MemberNode)
+            //{
+            //    MemberNode member = (MemberNode)n;
+            //    text += string.Format(" [{0}, {1}]", member.MemberType, member.MemberInfo.Name);
+            //}
 
             var tn = new TreeNode
             {

@@ -22,21 +22,5 @@ namespace FastDoc.Core
             else
                 return ItemType.Unknown;
         }
-
-        public static MemberType GetMemberType(this MemberInfo m)
-        {
-            if (m is ConstructorInfo)
-                return MemberType.Constructor;
-            else if (m is MethodInfo)
-                return MemberType.Method;
-            else if (m is EventInfo)
-                return MemberType.Event;
-            else if (m is FieldInfo)
-                return MemberType.Field;
-            else if (m is PropertyInfo)
-                return MemberType.Property;
-            else
-                return MemberType.Unknown;
-        }
     }
 }
