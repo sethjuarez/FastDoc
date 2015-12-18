@@ -1,0 +1,650 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20151217162202
+Username: REDMOND\sejuare
+RunAs User: REDMOND\sejuare
+Machine: DESKTOP-CF2JAOJ (Microsoft Windows NT 10.0.10586.0)
+Host Application: powershell -Command & { [Console]::WindowWidth = 150; [Console]::WindowHeight = 40; Start-Transcript C:\numl\FastDoc\Build\runbuild.txt; Import-Module C:\numl\FastDoc\Build\..\Tools\PSake\psake.psm1; Invoke-psake C:\numl\FastDoc\Build\..\Build\build.ps1 ; Stop-Transcript; }
+Process ID: 11744
+PSVersion: 5.0.10586.0
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0.10586.0
+BuildVersion: 10.0.10586.0
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\numl\FastDoc\Build\runbuild.txt
+psake version 4.4.2
+Copyright (c) 2010-2015 James Kovacs, Damian Hickey & Contributors
+Executing Clean
+Setting location to C:\numl\FastDoc
+Searching C:\numl\FastDoc
+Clearing bin obj Release Working packages TestResults .vs *.suo *.user *.orig *.dat *.lock.json *.nuget.props *.nuget.targets
+Removing 7 object(s)
+Deleted C:\numl\FastDoc\Src\.vs
+Deleted C:\numl\FastDoc\Src\.vs\FastDoc\v14\.suo
+Deleted C:\numl\FastDoc\Src\FastDoc\bin
+Deleted C:\numl\FastDoc\Src\FastDoc\obj
+Deleted C:\numl\FastDoc\Src\FastDoc.Core\bin
+Deleted C:\numl\FastDoc\Src\FastDoc.Core\obj
+Deleted C:\numl\FastDoc\Src\packages
+Deleting existing working directory C:\numl\FastDoc\Working
+Deleting existing working directory C:\numl\FastDoc\Working
+Creating working directory C:\numl\FastDoc\Working
+
+
+    Directory: C:\numl\FastDoc
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----       12/17/2015   4:22 PM                Working
+Executing Build
+Copying source to working source directory C:\numl\FastDoc\Working\Src
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows
+-------------------------------------------------------------------------------
+
+  Started : Thursday, December 17, 2015 4:22:03 PM
+   Source : C:\numl\FastDoc\Src\
+     Dest : C:\numl\FastDoc\Working\Src\
+
+    Files : *.*
+
+Exc Files : *.suo
+	    *.user
+	    *.lock.json
+
+ Exc Dirs : bin
+	    obj
+	    TestResults
+	    packages
+	    .vs
+	    artifacts
+
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /NP /R:1000000 /W:30
+
+------------------------------------------------------------------------------
+
+	  New Dir          2	C:\numl\FastDoc\Src\
+	    New File  		    1478	FastDoc.sln
+	    New File  		     469	NuGet.Config
+	  New Dir          8	C:\numl\FastDoc\Src\.git\
+	    New File  		      20	COMMIT_EDITMSG
+	    New File  		     265	config
+	    New File  		      73	description
+	    New File  		      91	FETCH_HEAD
+	    New File  		      23	HEAD
+	    New File  		    3688	index
+	    New File  		     155	ms-persist.xml
+	    New File  		      41	ORIG_HEAD
+	  New Dir          9	C:\numl\FastDoc\Src\.git\hooks\
+	    New File  		     452	applypatch-msg.sample
+	    New File  		     896	commit-msg.sample
+	    New File  		     189	post-update.sample
+	    New File  		     398	pre-applypatch.sample
+	    New File  		    1642	pre-commit.sample
+	    New File  		    1352	pre-push.sample
+	    New File  		    4951	pre-rebase.sample
+	    New File  		    1239	prepare-commit-msg.sample
+	    New File  		    3611	update.sample
+	  New Dir          1	C:\numl\FastDoc\Src\.git\info\
+	    New File  		     240	exclude
+	  New Dir          1	C:\numl\FastDoc\Src\.git\logs\
+	    New File  		    3442	HEAD
+	  New Dir          0	C:\numl\FastDoc\Src\.git\logs\refs\
+	  New Dir          2	C:\numl\FastDoc\Src\.git\logs\refs\heads\
+	    New File  		     776	gh-pages
+	    New File  		    1982	master
+	  New Dir          0	C:\numl\FastDoc\Src\.git\logs\refs\remotes\
+	  New Dir          2	C:\numl\FastDoc\Src\.git\logs\refs\remotes\origin\
+	    New File  		     725	gh-pages
+	    New File  		    1613	master
+	  New Dir          0	C:\numl\FastDoc\Src\.git\objects\
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\01\
+	    New File  		    2977	0c4d408ca0821664f27f32e24c3c9d4b4debfc
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\02\
+	    New File  		     397	965c98532c390306c9dafbbb5d397770167859
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\03\
+	    New File  		      69	fbc61c62664bb93437d149ab6eb040557c2d07
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\04\
+	    New File  		    4794	8cff973981e8dd4ed8e73c4ca532ffcf02e1e8
+	    New File  		     128	e3586b82a9ebd72fd4dfab80f275f2d47682cd
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\06\
+	    New File  		     184	3b27d8a4076d6f0748228cea43ffd963678206
+	    New File  		     217	b6bcbd8f42f56ba2554c39c9c4c1dbf913b97c
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\07\
+	    New File  		     992	2c60aec433bb5ae4b6d8fee7bd946921376bc2
+	    New File  		    1213	7e020d8a4ed98a2f565abbd20620e78dec3164
+	    New File  		     690	ec9396dabec355d29914ed71ec44b50fa9c1d2
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\08\
+	    New File  		    2136	7312a040487f52961c7c924e1e5d6e496fcaf9
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\09\
+	    New File  		     474	6a9bec71ed6a0c210e173a221d49d01352c068
+	    New File  		    1020	a9d8b9e4377fd764f64cd98416c2995863d8c7
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\0a\
+	    New File  		     989	4ddb4ea52bbb9c5996a98a78acfff746e9ed19
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\0e\
+	    New File  		      60	a47b18d466910ddb198f93078945ee8f7f1b54
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\0f\
+	    New File  		     506	53421b335d2f632889f2bf4a630a29e0d94a24
+	    New File  		    1028	53a2c3084607c065342b6723c38e80994b9410
+	    New File  		     654	69475bd022bd96a09b5b8005ea87406e9802b0
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\10\
+	    New File  		    5792	6103196be795ba8754b254314443aea400182b
+	    New File  		     278	c58cf685c72a701c537cd24d9a1812c4b21621
+	    New File  		     493	fd5f8e690347077ba7c764f03f000c53959cd2
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\12\
+	    New File  		     965	64b87f14e7e81c18ea1d53837fbe2683d33df7
+	    New File  		     676	e57f9d57e753da9d59a849c38d45e01d5bfae5
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\13\
+	    New File  		     250	89c798c5b97103cc5357bfe59fdfe99cf952fd
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\16\
+	    New File  		     705	6efd72cef6265c0f06e518aed9b4a159f5e217
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\17\
+	    New File  		     114	3293e95c353b0fe5cb3f74190df2536c2fe523
+	    New File  		    8633	65631f41f2b74d016945a39ab2cbda43260177
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\18\
+	    New File  		   33229	5f191afbc5481c20a959e097ba3bbbd41f050a
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\19\
+	    New File  		     482	323de1ee3aa16ca05e222a3aecdb5d6251b578
+	    New File  		     221	9323c4a64bd9e4ba56e5dce0eaf8cf50dedd79
+	    New File  		     177	dc2b96b50ae7ce1fdbee7d89aed02d66f7e4b2
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\1a\
+	    New File  		     790	2c013f5bec517738d364dc74b5b4b192dddeba
+	    New File  		    1665	f7de150c99c12dd67a509fe57c10d63e4eeb04
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\1b\
+	    New File  		     809	4ba65267439e627e79bf39b2b9faf8fd90bfc9
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\1c\
+	    New File  		     523	d36e3d730b5d7bfc3c1bf49595c73cf7056069
+	    New File  		     164	eab784a09e626a67a32aead3b37af44e042d54
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\1d\
+	    New File  		     159	caa60b49d971db7572bb54721d789c05f9bede
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\1e\
+	    New File  		     131	1f44a02b7dbc99ee71a7f121f3e64778682a11
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\1f\
+	    New File  		    1109	932da39bc9114f12caca644daa89cc92183877
+	    New File  		     231	b3b78aa13baac4fce866ad0b0033c466e518ce
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\22\
+	    New File  		     473	e7e3f2a3192c229ea6ce7f03304c52448e2616
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\23\
+	    New File  		     153	31f10fcd5d906a3118a1cb30d2c5223cde85da
+	    New File  		      59	9b6bfd7e5fc0c033299ac012759baf68169381
+	    New File  		    1820	ba97a9b0798ce7e693b533c490bf5435186d20
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\25\
+	    New File  		     337	a4aaaaa12de281bb58f691d090feb5b4ae0bc5
+	    New File  		      84	c429a82c29100b15574373bcb77801aacbe6f6
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\27\
+	    New File  		  113390	14c9810ea3e55c1952d113b57318b865723162
+	    New File  		     919	74b7649263d005cb3f20fe10433b2b4a38331c
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\28\
+	    New File  		     652	7d8b58583b856792a72136d0145aae21f40eeb
+	    New File  		    1226	d2eb151629c33aa45acc729c8b3caffa702e55
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\29\
+	    New File  		    1959	cc0a7111b0dd480bd6244c95b0c1e0c0c86239
+	    New File  		     306	cc59d4e6b7a71b9b3dad4ffa1dad1c0f53fe06
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\2b\
+	    New File  		     158	b5aeca2632aa98b2e9eca7f07e7f2ad31e1d9b
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\2f\
+	    New File  		     880	476ad4fcb43119d6022fccc1fcbe922747c8c6
+	    New File  		      62	92e7e66673f61bc9f4077389b8f42fc9536cea
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\33\
+	    New File  		     238	816d74d0daaa69bdd6e878ae839692707407e8
+	    New File  		     670	a565c307ba96750ca33598425e78b5eb075a42
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\3a\
+	    New File  		      62	1ebf3064be7822683ff481e5a5f0af7980cf70
+	    New File  		     555	94c6b752549285f0b5020f74e8bfc242845aee
+	    New File  		     979	9ade6da6eb8304c7a058270e52eb17f66551e4
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\3b\
+	    New File  		     414	5c695a279c215458c1ab3394efa217f42db98d
+	    New File  		     553	da3e8d488533a5da320e849b439231ae1fef61
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\3c\
+	    New File  		      60	94066d61a7af32cc78a6f8f07b701a789364f3
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\3d\
+	    New File  		     123	88fcba8c4c2690039f80aef8c6fc23e2500ed6
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\3f\
+	    New File  		     162	79c710122e7947163c9643854b4f61015718b9
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\41\
+	    New File  		      54	deb38903f8f5f26b24c5e108cbff597b68cedf
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\44\
+	    New File  		    4488	9d6ac551a286a868c5f102b303dbf2ac527552
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\45\
+	    New File  		   68456	fdf33830123533459b17fbbf91735489fd6bd8
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\46\
+	    New File  		     171	ba0fbcace89fe7c85d8ac5a5dfbfb4d5f4c662
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\47\
+	    New File  		      53	9e2fc00476a60dadeeea2fc3ac9326e9233332
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\48\
+	    New File  		     274	37ab9e95c1d6ce64dac5fb43011839e06e30c9
+	    New File  		      57	507cbe3fd9b217a910015f1033d7d462f6fe3a
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\4a\
+	    New File  		    1084	7f8355d21e9432834c3b8243c34d096e41d1b2
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\4b\
+	    New File  		     308	2caa4b1106b286fb552a214b7471e1d3995581
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\4c\
+	    New File  		     193	eb83d06105dfde892fb217882061009403554b
+	  New Dir          4	C:\numl\FastDoc\Src\.git\objects\4d\
+	    New File  		     174	b32b9ac2f4e0bbe1a6ad0edff2113e8c84304d
+	    New File  		      46	b8725a2771349554a6466c265229afcccb1378
+	    New File  		   64649	c4920bb828e8bfb5f7efc8f4c074af9e2784ab
+	    New File  		     156	f53b5de4992b2e2a861f61c988e37c4d55343b
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\50\
+	    New File  		     616	4c45d59f94e38030199fc38ca873e8bea14618
+	    New File  		     418	8fac982db927c14439c80624b7f1b30d8d19f4
+	    New File  		      27	fe4e6c669a4da522831c20597a7fe2072a5c85
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\54\
+	    New File  		     237	9f02692afa7cbfbbd8b2e02823738bfb456c63
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\57\
+	    New File  		     307	753b9dab3ec40ea35fb0c1552b6e6b2c4f30f6
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\5a\
+	    New File  		    1512	05588c7169c168dea8781bd1176bab31cb777f
+	    New File  		     653	0c055105b30d4dda62ea8db843912ad443f4ec
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\5c\
+	    New File  		      90	38c2139217cc8d4bec01dc6355e1be58617539
+	    New File  		     174	c0a8e6ed0d37489d672ccf239e923d60ad136d
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\60\
+	    New File  		     683	494dc28545df9becccbe697c20ca8a0a5e51f1
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\61\
+	    New File  		      54	bd980e9885a4c60e0045803a304c73269703be
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\62\
+	    New File  		    1617	8bb61fa6228934db92591b3a6a5d2fdc150733
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\64\
+	    New File  		    5950	620399b56a3a9edda65103beb18b019377030a
+	    New File  		     148	78b9af4d8e292799ba695f1e3788440d1ee4e8
+	    New File  		      54	8603478801c6b74275f51554b49f746d47ad7a
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\65\
+	    New File  		  212630	df196f95b5509531ec684b7f6c65d8ff103c80
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\66\
+	    New File  		    1257	54ac8e4494b01d6abc1467c5cf5d6e5cf785f5
+	    New File  		     156	6cf0871a3db8d8ec6b7cb47a203ec7fb369f67
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\67\
+	    New File  		     217	2ea73b1f2adb27aaf0210e056b0615de3d1c8c
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\6a\
+	    New File  		     241	18c6a6c21c3f74794c93333c1081fed3a3aab7
+	    New File  		     470	2d017ff67b5ac89c6883b2c5b963de9e7ffb0c
+	    New File  		   10594	c18a0c440cb0a1c1d999ba1a6a1225503aeea5
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\6b\
+	    New File  		    2402	05a24f22b103f2ca4f64d1fd7ce2ded7be130c
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\6d\
+	    New File  		     757	210555ddb340860078245bf487b5f52d422382
+	    New File  		      27	9f2fd1bc78bce7439b0065d9a403942d63aa24
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\6e\
+	    New File  		     210	2c7ab412f4fbcfe337c74b5a581fd98bb05631
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\71\
+	    New File  		     162	6fd361915f9cef966bbe71078717ee586babde
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\73\
+	    New File  		     396	8baeac9a542b5a658e11d94eac74b9adbaafcb
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\74\
+	    New File  		    1583	78d65971eec37b869c84967281089ee8bbb629
+	    New File  		      68	9612f9515ec2b4ef87b3274e8e9fc3fa703e2b
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\76\
+	    New File  		     232	2229a1262f2f369faa3a51db4d557015371543
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\7a\
+	    New File  		     654	6011f353601a394c95024dad58954a6eebc851
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\7c\
+	    New File  		     159	6375b2785aab30107f7e3656225e100786349f
+	    New File  		   38184	79c6a6bc9a128a2a8eaffbe49a4338625fdbc2
+	    New File  		     240	851ebc23957d5738cf35d270f707662a1d6663
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\7f\
+	    New File  		     162	1d795a8bfaa261216f2f8fa12bdcdd1c54b9d0
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\80\
+	    New File  		      59	d8362fcbae15930558f281fde84312af09d4ce
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\83\
+	    New File  		      83	c3efb83c236053faaf2dad79623fc21efddcec
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\84\
+	    New File  		     196	cce4dd307a78a3a9455c4fed62b49b9c7e61ad
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\85\
+	    New File  		     160	29be45dcefe437346b315d678018e005c672d4
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\86\
+	    New File  		     161	3a3b92acff8d235e2963382da6a8a4e2ce842a
+	    New File  		     271	bff477d6665a21a39b193cda956d5ade62874f
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\88\
+	    New File  		     493	7962a4a4359054ae8c9547e144793bd624f9d9
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\89\
+	    New File  		     223	916fb5f35517f58f6566f92e6eb1c58cbeb6b6
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\8a\
+	    New File  		     359	1a28c9b034bec0f80e8d8aec345ddb9c92919c
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\8b\
+	    New File  		   51064	0f54e47e1d356dcf1496942a50e228e0f1ee14
+	    New File  		      27	40d9270d249df8858929963a8bba7a2c0035b4
+	    New File  		     307	f58cc5a81db1ad00a200f4f9f879fdf97b23eb
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\8c\
+	    New File  		   44441	1748aab7a790d510fb3f42a8a8971d96efa79d
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\8d\
+	    New File  		     162	e0355e59c549f2f9e5c0678580328e5903536b
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\8e\
+	    New File  		     151	15646352ec1d9a84bbc6504ef6b46e16bf7823
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\90\
+	    New File  		     926	32f5f5e389d556a7a95376457297088aed401b
+	    New File  		     197	6d421db97a3e2ffed7bb343ac25366e7d06692
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\91\
+	    New File  		     339	aa7fad5b1d6a2a3452db3383a97e5826f9ef9c
+	    New File  		      71	db9afd6bcdfc0990349091891ff6827d28b302
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\92\
+	    New File  		     377	34bf92b626342faeb292b070729322664c96b5
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\94\
+	    New File  		     960	a925bbf0f871b76bd02f7446461aab824c149c
+	    New File  		      62	c8d591ba8b713613ff34e061ab0d00cc20aa8c
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\97\
+	    New File  		    1079	c3f69c8516cab038e96ab093f9d2153c359de0
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\98\
+	    New File  		     289	80ef8187f70f97bff7db7f60c72a2ad23de357
+	    New File  		     661	a3c293055e519c084a974c6ae975f2d26b1fae
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\9a\
+	    New File  		    1088	01c67af3de3310b03d78ea4192b834e123c1c0
+	    New File  		    5627	558d6f178670465bc60ac16779effa518c30b3
+	  New Dir          4	C:\numl\FastDoc\Src\.git\objects\9b\
+	    New File  		     422	14c50a16c37ab2fb0f6733aa78d615b6a1f46f
+	    New File  		     149	502cea3b3803f92242418859e315d7545f6f80
+	    New File  		     153	9adcac25d1707b66a48ab7a8ce69011e6f98a0
+	    New File  		     149	bbf58ead0ee7b548bbab3c5d3842938ce1d892
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\9c\
+	    New File  		     387	f0d1dfb78d8d159254fd6a078d7bd1bda120d2
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\9e\
+	    New File  		    1947	3df74aa128dcb2e7a169b29de4ebcd077175a5
+	    New File  		      74	f2086e4c2f50380ee91cd86c25b06c0bbaa188
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\9f\
+	    New File  		      85	2090445a112abd50daa0201ecf3b897bd4e93b
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\a4\
+	    New File  		     239	45a99b3d2471e5096ade6aba2cf0a46d68a8e0
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\a5\
+	    New File  		      54	289afbf3c5b9eb3a625a43889fc99c1e7b565b
+	    New File  		   20485	53c4f5e08a72a0d475aac9019fa57754abccb3
+	    New File  		    1225	7546233dd0ad053aeafd610a397e748b3cfd15
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\a8\
+	    New File  		     653	a1e02494b53c3c991767e3579d9cf2d8fdcae5
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\a9\
+	    New File  		    1789	5952d1391c4a25462047ffcdf12cf33e5d5d49
+	    New File  		     208	cbda0329df46f1c3444de6a81b8a74f4cef9f7
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\aa\
+	    New File  		      81	8308071a08579f4f8eeca42d04e3c73922e51e
+	    New File  		     228	ac513863b5ae10f87207c7167d53421e0f3a5e
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\ab\
+	    New File  		     581	4cb7c7b09ea74afea74e3549eeab794aaf57fa
+	    New File  		    1002	e643a6b02b42a5dbfd6b608dfcc637f7ba7eda
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\ae\
+	    New File  		     472	9d7c9b833a2f3edc2921afbce1fdb0ff8b34e8
+	    New File  		      62	f74e58d8786db635f3fff2b57a00e07b7bd13c
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\af\
+	    New File  		     654	1823e72411135c4552a3d1bb26667610245f15
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\b0\
+	    New File  		     418	9faa174876730a91efe42de353be6585c15be7
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\b2\
+	    New File  		    1210	37b3f95d32307a97584150598dca202b2cc10c
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\b4\
+	    New File  		    1217	5492639b3f45a32820b715439d3a71acb274bd
+	    New File  		     152	bc90543f521842be2770b1a129e1c387deb1c6
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\b5\
+	    New File  		     497	4e9a13b51fa63cc45c8ee66e230643a75852c0
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\b8\
+	    New File  		     121	04da0deda65e18a33adf744e8b677bc535b1e1
+	    New File  		     197	0f46668c73ea8d68a74912f8e452b23c0e0def
+	    New File  		      95	bd186ceb94ce7ffbd90b341829b86a98499807
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\ba\
+	    New File  		     731	53876ef967e7c445b5217f236a2c5f5f2c56d3
+	    New File  		     356	9bf6dfb93d7f107750344f8b99855b33dbf242
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\bb\
+	    New File  		     158	a6cc4d77ccea2381b2da1af301d52cbbba8c19
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\bc\
+	    New File  		    1001	092e1a88d23f9eb7e20715d2bdc49218658b8f
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\bd\
+	    New File  		     501	4307e67f3e6634613efa183d342cd61f719147
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\be\
+	    New File  		      60	4a026ef298ef0f60967838b3bf7c2b3a5939b8
+	    New File  		     415	b4d8eeefece4ec8bbed994b36ca608c640e740
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\c0\
+	    New File  		      20	8f9add7a1d48045bec46451dfdbb5b5ebf8dc0
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\c2\
+	    New File  		      51	294fea09b7bba218661c07ffe8f108c1e2a28f
+	    New File  		     396	36d034b6c8b102f9ab42612d8c30db61870ef2
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\c3\
+	    New File  		     655	44d146f49f6ebb8fb06709f403d1ada1f1e684
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\c4\
+	    New File  		     964	2f58b19a2afdda737cffa45c9c8821f63e571f
+	    New File  		     338	f6020e2cf0c61f61d18fdfd6f36e9c98d9d813
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\c5\
+	    New File  		     438	b4251f616a2d8909bcff70d429ca73b67b70d8
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\c6\
+	    New File  		    2121	a5acc5291cd2c9aedb35f55fb47587106ba39f
+	    New File  		     424	c988152a1bb07a39267b64663c1bef3c137bdb
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\c7\
+	    New File  		     124	14ef3a23ec95ef83e4143701d37470a0363797
+	    New File  		     221	268192374a079c113b54dff0ed0902453566f5
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\c8\
+	    New File  		     157	c641f4d3d18335d3e11f219beafe6444a43904
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\cb\
+	    New File  		    8172	39f2048fe1da817590b0d10e468d5610f58885
+	    New File  		     383	6ec20c5f6f4569d653f6ff476d6e07f39919ad
+	    New File  		    1201	78c4f6d276125ac99469bd569cdc984114b4d5
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\cc\
+	    New File  		   84166	629c44a6c4447b7ae24f181baac60cb280ad55
+	    New File  		     661	cdc3b161e70eef79b077abcbfff0af911f3432
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\cd\
+	    New File  		      61	6bcb693e0750f466fd237f20d57305b464dd43
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\ce\
+	    New File  		     275	506d717fe7b36717ff67b4359c707d7e62dac2
+	    New File  		     136	ecc163200ed6331b462b23f125cfff40d8a9f8
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\d0\
+	    New File  		      85	9cf65888ee009cc4e1128e78fdb1c6c3fee0e4
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\d2\
+	    New File  		     589	715812d0dcf0aa698f5c553e59e2a613688e31
+	    New File  		      55	fe1e9e885bbcf938e8f85d35a81bbfdb9e1982
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\d3\
+	    New File  		      81	01c096372a09e0d8813699529832a791cc282b
+	    New File  		     161	28b187e78bd21bd86d41484b97e8bffdb3a9c1
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\d6\
+	    New File  		     271	a5631b19721e2453ca3563871463ec18cb9cff
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\d7\
+	    New File  		     274	580238aaa96f366043fe305192a441b2ac1014
+	    New File  		     859	7904f2ccf0adc7fc9d3a0c3bc123b6f9e3f751
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\d9\
+	    New File  		     751	2f6ee43af89ae2dc6a1e5dc4733107fcf7ad6a
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\da\
+	    New File  		   38147	4170647dd102aa92a57cb4936ff6dfa58d78c2
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\db\
+	    New File  		     100	3f8ab7298da0827ea6062faf6b598be274eb2e
+	    New File  		     177	70235fcf9aee3e95663f871b1b0cb00d862eea
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\dd\
+	    New File  		    1514	27c4254b22f9dba351ad1cef9b9c917c565894
+	  New Dir          4	C:\numl\FastDoc\Src\.git\objects\de\
+	    New File  		     255	2f48de90f63ef67f5e4b2b5a78163702a2f5b7
+	    New File  		     284	5abdc9f61b8530f94a558aa7e414781a96a7cb
+	    New File  		     151	b7a7bd7e17ab39a78627452b1283b021cf608d
+	    New File  		     246	cc8e86ff2fd71be00c3948c934c67912e1dca2
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\e0\
+	    New File  		    1448	2d2c59131fc8f8ff8ff62055f2adca3ee4d8ee
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\e1\
+	    New File  		     216	54ce380b8ec58409481dae2edb75763a6fad8d
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\e2\
+	    New File  		     162	46980165b9c3891866231ec59aa3a6a484c28b
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\e4\
+	    New File  		      79	0f570c08affb584102f6b4445074b24593ba94
+	    New File  		    1380	8ca227fee99a516a90ce2eeb14d9b6f572ac32
+	    New File  		     470	988c095db39881b0e03b0b58586a05e6b4d92e
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\e7\
+	    New File  		     327	6760dfc8613fe80e02dea53c66952eab213e76
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\e8\
+	    New File  		     298	44a78f065ff463ec3fba9be9250954f309002d
+	    New File  		     338	646eb3346d79f6f7031e160f4ea9dc1df24d3f
+	    New File  		   47479	9738de5eaf8fca33a2f2cdc5cb4929caa62b71
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\ea\
+	    New File  		     171	8b0b82ea4220a1ffa8c1f6f29ec134c7ed1375
+	    New File  		     454	973f528b27ba5a9a0069190ef2f40c52e075b3
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\ec\
+	    New File  		     129	b0b8dc98f2f9d579d3b62c86a8b711faf00f9c
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\ed\
+	    New File  		     684	92a1eca9289a16380c1f93b7334e378ff1a198
+	    New File  		     913	b52095df034bf8782dd5879d22f1b54de39957
+	    New File  		     239	f27206bad2cdbeca33b9440c7bdf912ff20268
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\ee\
+	    New File  		     208	5066072348dff7746cd3c50146fd949ade3196
+	    New File  		     213	5874b9b8b087964c2f1c811a7090070f8446f3
+	    New File  		     230	f7ea7bbdc33fc9991b64665c737d6aab6f5bb1
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\ef\
+	    New File  		     128	7f02f00020f253ed5f4c2fb2ebc901a5328fee
+	    New File  		     222	bcb9279eb20c85dd96f11dd266a5bc9f0c1cd5
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\f0\
+	    New File  		    1208	0e7a24c2d370ccea23538dedf7288f3c067d46
+	    New File  		     748	82b10e026332ea707efc928769ecc8648c0402
+	    New File  		     177	9b87cfd85fb67e440b04d7e1f5db11d46b69ed
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\f1\
+	    New File  		     541	e2a5dc9396ce946c04fbd37fe126c60f98f8d0
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\f2\
+	    New File  		      60	97becc0b713ae5443c65ac7638e8a090b18e53
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\f3\
+	    New File  		     150	0bdde351d3baec57765a4ed51a24c6443df9e1
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\f9\
+	    New File  		    1063	0221fe3f0cd63edc00e2842e1bae1d2d5ba4e1
+	    New File  		     514	8c29de30b9791e845bb98a27c2a8136d25288e
+	  New Dir          1	C:\numl\FastDoc\Src\.git\objects\fa\
+	    New File  		     622	5834a1e45e9cdf820c88171e22dd76a3f50bfb
+	  New Dir          3	C:\numl\FastDoc\Src\.git\objects\fc\
+	    New File  		     114	3c0fdee4c8f0e41368a798c7370dd1115463d9
+	    New File  		     993	9b1e3ff22f4c6ab39a571fc01fafece91f3654
+	    New File  		  407143	b6aa9ea5f80af604b89055facf74c5e09a7734
+	  New Dir          2	C:\numl\FastDoc\Src\.git\objects\fe\
+	    New File  		     744	57ea66b2232e5fb76458dd833b4a8761e6d8b2
+	    New File  		     955	c916e26ce3226600dd15317dd4d34da28efa55
+	  New Dir          0	C:\numl\FastDoc\Src\.git\objects\info\
+	  New Dir          0	C:\numl\FastDoc\Src\.git\objects\pack\
+	  New Dir          0	C:\numl\FastDoc\Src\.git\refs\
+	  New Dir          2	C:\numl\FastDoc\Src\.git\refs\heads\
+	    New File  		      41	gh-pages
+	    New File  		      41	master
+	  New Dir          0	C:\numl\FastDoc\Src\.git\refs\remotes\
+	  New Dir          2	C:\numl\FastDoc\Src\.git\refs\remotes\origin\
+	    New File  		      41	gh-pages
+	    New File  		      41	master
+	  New Dir          0	C:\numl\FastDoc\Src\.git\refs\tags\
+	  New Dir          4	C:\numl\FastDoc\Src\FastDoc\
+	    New File  		     186	App.config
+	    New File  		    3124	FastDoc.csproj
+	    New File  		     151	packages.config
+	    New File  		    1133	Program.cs
+	  New Dir          1	C:\numl\FastDoc\Src\FastDoc\Properties\
+	    New File  		    1426	AssemblyInfo.cs
+	  New Dir         10	C:\numl\FastDoc\Src\FastDoc.Core\
+	    New File  		    2798	FastDoc.Core.csproj
+	    New File  		     406	InformationType.cs
+	    New File  		    1108	ItemNode.cs
+	    New File  		     270	ItemType.cs
+	    New File  		     994	MemberNode.cs
+	    New File  		    2342	Node.cs
+	    New File  		    7027	PrettyPrintExtensions.cs
+	    New File  		     720	TypeHelpers.cs
+	    New File  		     472	XmlDoc.cs
+	    New File  		    9562	XmlDocumentationExtensions.cs
+	  New Dir          1	C:\numl\FastDoc\Src\FastDoc.Core\Properties\
+	    New File  		    1436	AssemblyInfo.cs
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :       176       174         2         0         0         0
+   Files :       296       296         0         0         0         0
+   Bytes :    1.38 m    1.38 m         0         0         0         0
+   Times :   0:00:01   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :             1990269 Bytes/sec.
+   Speed :             113.884 MegaBytes/min.
+   Ended : Thursday, December 17, 2015 4:22:04 PM
+
+Updating assembly version
+
+C:\numl\FastDoc\Working\Src
+C:\numl\FastDoc\Working\Src\FastDoc\Properties\AssemblyInfo.cs
+C:\numl\FastDoc\Working\Src\FastDoc\Properties\AssemblyInfo.cs -> 1.0.0.19217
+C:\numl\FastDoc\Working\Src
+C:\numl\FastDoc\Working\Src\FastDoc.Core\Properties\AssemblyInfo.cs
+C:\numl\FastDoc\Working\Src\FastDoc.Core\Properties\AssemblyInfo.cs -> 1.0.0.19217
+
+Restoring C:\numl\FastDoc\Working\Src\FastDoc.sln
+Checking for updates from https://www.nuget.org/api/v2/.
+Currently running NuGet.exe 3.3.0.
+NuGet.exe is up to date.
+MSBuild auto-detection: using msbuild version '14.0' from 'C:\Program Files (x86)\MSBuild\14.0\bin'. Use option -MSBuildVersion to force nuget to use a specific version of MSBuild.
+Feeds used:
+  C:\Users\sejuare\AppData\Local\NuGet\Cache
+  C:\Users\sejuare\.nuget\packages\
+  https://www.myget.org/F/aspnetvnext/api/v2
+  https://www.myget.org/F/xunit/api/v2
+  https://www.nuget.org/api/v2
+
+Restoring NuGet package FluentCommandLineParser.1.4.3.
+Adding package 'FluentCommandLineParser.1.4.3' to folder 'C:\numl\FastDoc\Working\Src\packages'
+Added package 'FluentCommandLineParser.1.4.3' to folder 'C:\numl\FastDoc\Working\Src\packages'
+
+Building C:\numl\FastDoc\Working\Src\FastDoc.sln
+Microsoft (R) Build Engine version 14.0.24720.0
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Building the projects in this solution one at a time. To enable parallel build, please add the "/m" switch.
+Build started 12/17/2015 4:22:07 PM.
+Project "C:\numl\FastDoc\Working\Src\FastDoc.sln" on node 1 (Clean;Rebuild target(s)).
+ValidateSolutionConfiguration:
+  Building solution configuration "Release|Any CPU".
+The target "BeforeGenerateProjectPriFile" listed in a BeforeTargets attribute at "C:\Program Files (x86)\MSBuild\Microsoft\NuGet\Microsoft.NuGet.targets (186,61)" does not exist in the project, and will be ignored.
+Project "C:\numl\FastDoc\Working\Src\FastDoc.sln" (1) is building "C:\numl\FastDoc\Working\Src\FastDoc.Core\FastDoc.Core.csproj" (2) on node 1 (Clean target(s)).
+CoreClean:
+  Creating directory "obj\Release\".
+Done Building Project "C:\numl\FastDoc\Working\Src\FastDoc.Core\FastDoc.Core.csproj" (Clean target(s)).
+The target "BeforeGenerateProjectPriFile" listed in a BeforeTargets attribute at "C:\Program Files (x86)\MSBuild\Microsoft\NuGet\Microsoft.NuGet.targets (186,61)" does not exist in the project, and will be ignored.
+Project "C:\numl\FastDoc\Working\Src\FastDoc.sln" (1) is building "C:\numl\FastDoc\Working\Src\FastDoc\FastDoc.csproj" (3) on node 1 (Clean target(s)).
+CoreClean:
+  Creating directory "obj\Release\".
+Done Building Project "C:\numl\FastDoc\Working\Src\FastDoc\FastDoc.csproj" (Clean target(s)).
+Project "C:\numl\FastDoc\Working\Src\FastDoc.sln" (1) is building "C:\numl\FastDoc\Working\Src\FastDoc\FastDoc.csproj" (3:2) on node 1 (Rebuild target(s)).
+PrepareForBuild:
+  Creating directory "C:\numl\FastDoc\Release\Build\".
+Project "C:\numl\FastDoc\Working\Src\FastDoc\FastDoc.csproj" (3:2) is building "C:\numl\FastDoc\Working\Src\FastDoc.Core\FastDoc.Core.csproj" (2:3) on node 1 (default targets).
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\14.0\bin\csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /errorreport:prompt /warn:4 /define:TRACE /highentropyva+ /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Microsoft.CSharp.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.Linq.dll" /debug:pdbonly /filealign:512 /optimize+ /out:obj\Release\FastDoc.Core.dll /ruleset:"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\\Rule Sets\MinimumRecommendedRules.ruleset" /subsystemversion:6.00 /target:library /warnaserror+ /utf8output InformationType.cs ItemNode.cs MemberNode.cs Node.cs PrettyPrintExtensions.cs Properties\AssemblyInfo.cs ItemType.cs TypeHelpers.cs XmlDoc.cs XmlDocumentationExtensions.cs "C:\Users\sejuare\AppData\Local\Temp\.NETFramework,Version=v4.5.2.AssemblyAttributes.cs"
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\FastDoc.Core.dll" to "C:\numl\FastDoc\Release\Build\FastDoc.Core.dll".
+  FastDoc.Core -> C:\numl\FastDoc\Release\Build\FastDoc.Core.dll
+  Copying file from "obj\Release\FastDoc.Core.pdb" to "C:\numl\FastDoc\Release\Build\FastDoc.Core.pdb".
+Done Building Project "C:\numl\FastDoc\Working\Src\FastDoc.Core\FastDoc.Core.csproj" (default targets).
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\14.0\bin\csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /platform:anycpu32bitpreferred /errorreport:prompt /warn:4 /define:TRACE /highentropyva+ /reference:C:\numl\FastDoc\Release\Build\FastDoc.Core.dll /reference:C:\numl\FastDoc\Working\Src\packages\FluentCommandLineParser.1.4.3\lib\net35\FluentCommandLineParser.dll /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Microsoft.CSharp.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.Linq.dll" /debug:pdbonly /filealign:512 /optimize+ /out:obj\Release\FastDoc.exe /ruleset:"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\\Rule Sets\MinimumRecommendedRules.ruleset" /subsystemversion:6.00 /target:exe /warnaserror+ /utf8output Program.cs Properties\AssemblyInfo.cs "C:\Users\sejuare\AppData\Local\Temp\.NETFramework,Version=v4.5.2.AssemblyAttributes.cs"
+_CopyFilesMarkedCopyLocal:
+  Copying file from "C:\numl\FastDoc\Working\Src\packages\FluentCommandLineParser.1.4.3\lib\net35\FluentCommandLineParser.dll" to "C:\numl\FastDoc\Release\Build\FluentCommandLineParser.dll".
+  Copying file from "C:\numl\FastDoc\Working\Src\packages\FluentCommandLineParser.1.4.3\lib\net35\FluentCommandLineParser.pdb" to "C:\numl\FastDoc\Release\Build\FluentCommandLineParser.pdb".
+  Copying file from "C:\numl\FastDoc\Working\Src\packages\FluentCommandLineParser.1.4.3\lib\net35\FluentCommandLineParser.xml" to "C:\numl\FastDoc\Release\Build\FluentCommandLineParser.xml".
+_CopyAppConfigFile:
+  Copying file from "App.config" to "C:\numl\FastDoc\Release\Build\FastDoc.exe.config".
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\FastDoc.exe" to "C:\numl\FastDoc\Release\Build\FastDoc.exe".
+  FastDoc -> C:\numl\FastDoc\Release\Build\FastDoc.exe
+  Copying file from "obj\Release\FastDoc.pdb" to "C:\numl\FastDoc\Release\Build\FastDoc.pdb".
+Done Building Project "C:\numl\FastDoc\Working\Src\FastDoc\FastDoc.csproj" (Rebuild target(s)).
+Done Building Project "C:\numl\FastDoc\Working\Src\FastDoc.sln" (Clean;Rebuild target(s)).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.40
+Executing ILMerge
+ILMerge to C:\numl\FastDoc\Release\FastDoc.exe complete!
+
+Build Succeeded!
+----------------------------------------------------------------------
+Build Time Report
+----------------------------------------------------------------------
+Name    Duration
+----    --------
+Clean   00:00:00.5759512
+Build   00:00:04.3119165
+ILMerge 00:00:00.7911889
+Total:  00:00:05.9396847
+**********************
+Windows PowerShell transcript end
+End time: 20151217162208
+**********************

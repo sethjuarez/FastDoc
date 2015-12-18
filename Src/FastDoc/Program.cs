@@ -4,7 +4,6 @@ using FastDoc.Core;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using FastDoc.Visualizer;
 
 namespace FastDoc
 {
@@ -13,7 +12,6 @@ namespace FastDoc
         static void Main(string[] args)
         {
             var root = Load("SampleLib.dll");
-            NodeVisualizer.TestShowVisualizer(root);
         }
 
         static Node Load(string asmbly)
